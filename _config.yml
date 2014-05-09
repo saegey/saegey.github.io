@@ -10,5 +10,3 @@ brand: AS
 # Build settings
 markdown: kramdown
 permalinks: pretty
-sass:
-    sass_dir: css
