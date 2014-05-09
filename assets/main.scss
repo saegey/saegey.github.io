@@ -23,6 +23,31 @@ $list-group-bg: lighten($body-bg, 15%);
     font-size: 26px;
     margin-top: 7px;
   }
+  .navbar-right {
+    margin-right: 0px !important;
+  }
+  .nav {
+    .open {
+      >a {
+        background-color: darken($body-bg, 60%);
+      }
+      .fa {
+        color: #fff;
+      }
+    }
+  }
+  .dropdown-menu {
+    background-color: darken($body-bg, 60%);
+    >li {
+      >a {
+        color: #fff;
+        &:hover {
+          color: darken($body-bg, 60%);
+        }
+      }
+    }
+  }
+  .nav:hover { background-color: darken($body-bg, 60%) }
   background: $navbar-default-bg;
   border: 0;
 }
@@ -40,6 +65,10 @@ $list-group-bg: lighten($body-bg, 15%);
     }
   }
   .list-group-item {}
+  .dropdown-menu {
+    margin-left: -15px;
+    margin-top: 10px;
+  }
 }
 
 .dropdown-menu {
@@ -49,6 +78,24 @@ $list-group-bg: lighten($body-bg, 15%);
   box-shadow:none !important;
   -webkit-box-shadow: 0;
   -moz-box-shadow: 0;
+}
+.btn {
+  padding: 0;
+  font-size: 24px;
+}
+.open {}
+.btn-default {
+  @include border-top-radius(0);
+  @include border-bottom-radius(0);
+  border:none !important;
+  box-shadow:none !important;
+  -webkit-box-shadow: 0;
+  -moz-box-shadow: 0;
+  background-color: darken($body-bg, 15%);
+  color: darken($body-bg, 60%);
+}
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+  background-color: darken($body-bg, 15%) !important;
 }
 
 .resume {

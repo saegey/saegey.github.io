@@ -5201,6 +5201,20 @@ button.close {
     font-family: "Pacifico";
     font-size: 26px;
     margin-top: 7px; }
+  .navbar .navbar-right {
+    margin-right: 0px !important; }
+  .navbar .nav .open > a {
+    background-color: #5c5139; }
+  .navbar .nav .open .fa {
+    color: #fff; }
+  .navbar .dropdown-menu {
+    background-color: #5c5139; }
+    .navbar .dropdown-menu > li > a {
+      color: #fff; }
+      .navbar .dropdown-menu > li > a:hover {
+        color: #5c5139; }
+  .navbar .nav:hover {
+    background-color: #5c5139; }
 
 .panel {
   border: 0; }
@@ -5211,6 +5225,9 @@ button.close {
     border: 0; }
     .panel .panel-heading .fa {
       color: #5c5139; }
+  .panel .dropdown-menu {
+    margin-left: -15px;
+    margin-top: 10px; }
 
 .dropdown-menu {
   border-top-right-radius: 0;
@@ -5221,6 +5238,25 @@ button.close {
   box-shadow: none !important;
   -webkit-box-shadow: 0;
   -moz-box-shadow: 0; }
+
+.btn {
+  padding: 0;
+  font-size: 24px; }
+
+.btn-default {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: 0;
+  -moz-box-shadow: 0;
+  background-color: #cdc3ae;
+  color: #5c5139; }
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+  background-color: #cdc3ae !important; }
 
 .resume .job-experience {
   border-bottom: 1px solid #cdc3ae;

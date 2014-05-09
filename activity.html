@@ -10,7 +10,16 @@ container_class: activity
     <div class="pull-right">
       <i class="fa fa-road fa-2x"></i>
     </div>
-    <h3>Activity</h3>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        Activity <i class="fa fa-angle-down"></i>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="#" class="activity-change" data-entity="dailyPlaces">Places</a>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <!-- List group -->
@@ -30,19 +39,36 @@ function convertDuration(seconds) {
   return Number((seconds / 60).toPrecision(2)) + " minutes";
 }
 
+function summaryTemplate(daySummary) {
+  var html = '<li class="list-group-item">';
+  html += '<div class="pull-right">' + moment(daySummary.date).fromNow() + "</div>";
+  _.each(daySummary.summary, function(summary) {
+    html += '<p><strong>' + capitaliseFirstLetter(summary.activity) + '</strong></p>';
+    html += '<p>' + convertDistance(summary.distance);
+    html += " / " + convertDuration(summary.duration) + '</p>';
+  });
+  html += '</li>';
+  return html;
+}
+
+function getMovesData(entity, next) {
+  $.get( "http://moves.saegey.com/" + entity + ".json", function(data) {
+    return next(data);
+  });
+}
+
 $( document ).ready(function() {
+  $("a.activity-change").on( "click", function() {
+    var entity = $( this ).data("entity");
+    getMovesData(entity, function(data) {
+      console.log(data);
+    });
+  });
+  
   $.get( "http://moves.saegey.com/dailySummaries.json", function( data ) {
     var data = _.sortBy(data.summaries, function(day) { return day.date}).reverse();
     for(var i = 0; i < data.length; ++i) {
-      var html = '<li class="list-group-item">';
-      html += '<div class="pull-right">' + moment(data[i].date).fromNow() + "</div>";
-      _.each(data[i].summary, function(summary) {
-      	html += '<p><strong>' + capitaliseFirstLetter(summary.activity) + '</strong></p>';
-      	html += '<p>' + convertDistance(summary.distance);
-      	html += " / " + convertDuration(summary.duration) + '</p>';
-      });
-      html += '</li>';
-      $(".panel ul").append(html);
+      $(".panel ul.list-group").append(summaryTemplate(data[i]));
     }
   });
 });
