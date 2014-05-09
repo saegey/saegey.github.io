@@ -5226,26 +5226,27 @@ button.close {
   border-bottom: 1px solid #cdc3ae;
   margin-top: 10px;
   margin-bottom: 10px; }
-  .resume .job-experience :first {
+  .resume .job-experience:first {
     margin-top: 0; }
-  .resume .job-experience :last {
+  .resume .job-experience:last {
     border-bottom: 0; }
   .resume .job-experience p {
     margin-bottom: 0; }
   .resume .job-experience .job-location {
     margin-bottom: 10px; }
 .resume blockquote {
-  background: white; }
+  background: white;
+  margin-bottom: 0; }
 .resume ul {
   list-style: square;
-  padding-left: 20px; }
+  padding-left: 20px;
+  margin-bottom: 0; }
 .resume .list-unstyled, .resume .list-inline {
   padding-left: 0; }
 .resume li {
   margin-bottom: 5px; }
 .resume h3 {
-  border-bottom: 2px solid #cdc3ae;
-  padding-bottom: 5px; }
+  border-bottom: 2px solid #cdc3ae; }
 
 @media (min-width: 768px) {
   .container {
@@ -5258,11 +5259,12 @@ button.close {
       font-family: "Pacifico"; }
     #home .jumbotron .lead {
       margin-top: 30px;
-      margin-bottom: 30px; }
+      margin-bottom: 30px;
+      color: #5c5139; }
     #home .jumbotron .profile-links a {
       color: #cdc3ae; }
-      #home .jumbotron .profile-links a :hover {
-        color: #b9ac8e; }
+      #home .jumbotron .profile-links a:hover {
+        color: #5c5139; }
   #home .container-fluid {
     padding-left: 0px;
     padding-right: 0px; }

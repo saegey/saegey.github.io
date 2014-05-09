@@ -56,10 +56,10 @@ $list-group-bg: lighten($body-bg, 15%);
     border-bottom: 1px solid darken($body-bg, 15%);
     margin-top: 10px;
     margin-bottom: 10px;
-    :first {
+    &:first {
       margin-top: 0;
     };
-    :last {
+    &:last {
       border-bottom: 0;
     }
     p {
@@ -71,10 +71,12 @@ $list-group-bg: lighten($body-bg, 15%);
   }
   blockquote {
     background: lighten($body-bg, 15%);
+    margin-bottom: 0;
   }
   ul {
     list-style: square;
     padding-left: 20px;
+    margin-bottom: 0;
   }
   .list-unstyled {
     padding-left: 0;
@@ -84,7 +86,6 @@ $list-group-bg: lighten($body-bg, 15%);
   }
   h3 {
     border-bottom: 2px solid darken($body-bg, 15%);
-    padding-bottom: 5px;
   }
 }
 
@@ -103,12 +104,13 @@ $list-group-bg: lighten($body-bg, 15%);
     .lead {
       margin-top: 30px;
       margin-bottom: 30px;
+      color: darken($body-bg, 60%);
     }
     .profile-links {
       a {
         color: darken($body-bg, 15%);
-        :hover {
-          color: darken($body-bg, 25%);
+        &:hover {
+          color: darken($body-bg, 60%);
         }
       }
     }
