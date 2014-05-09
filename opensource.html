@@ -1,0 +1,46 @@
+---
+layout: default
+title: Open Source
+permalink: /opensource/
+container_class: open-source
+---
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+    <div class="pull-right">
+      <i class="fa fa-code fa-2x"></i>
+    </div>
+    <h3>Open Source</h3>
+  </div>
+
+  <!-- List group -->
+  <ul class="list-group">
+  </ul>
+</div>
+<script>
+$( document ).ready(function() {
+  $.get( "https://api.github.com/users/saegey/repos", function( data ) {
+    var data = _.sortBy(data, function(repo) { return repo.pushed_at}).reverse();
+    for(var i = 0; i < data.length; ++i) {
+      var html = "<li class='list-group-item'>";
+      html += '<div class="pull-right repo-details">';
+      if (data[i].fork) {
+        html += '<i class="fa fa-code-fork"></i>';
+      }
+      if (data[i].stargazers_count) {
+        html += ' <i class="fa fa-star"> '+ data[i].stargazers_count + '</i>';
+      }
+      html += '</div>';
+      html += '<a href="' + data[i].html_url + '">';
+      html += "<h4 class='repo-name'>" + data[i].full_name + "</h4></a>";
+      html += "<p class='repo-description'>" + data[i].description + "</p>";
+      if (data[i].language) {
+        html += "<p class='repo-language'>" + data[i].language + "</p>";
+      }
+      html += "</li>";
+      $(".panel ul").append(html);
+    }
+  });
+});
+</script>

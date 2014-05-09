@@ -1,0 +1,139 @@
+$font-family-sans-serif: "Roboto";
+$body-bg: #eae6dd;
+$jumbotron-bg: #fffcf6;
+$jumbotron-color: #ff4335;
+$brand-primary: #ff4335;
+$navbar-default-bg: #fffcf6;
+$navbar-height: 65px;
+$navbar-default-link-hover-bg: lighten($body-bg, 5%);
+$blockquote-border-color: darken($body-bg, 15%);
+$page-header-border-color: darken($body-bg, 15%);
+$dropdown-bg: lighten($body-bg, 5%);
+$dropdown-border: 0;
+$dropdown-link-hover-bg: lighten($body-bg, 15%);
+$panel-default-heading-bg: darken($body-bg, 15%);
+$panel-border-radius: 0;
+$list-group-bg: lighten($body-bg, 15%);
+
+@import "stylesheets/bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+
+.navbar {
+  .navbar-brand {
+    font-family: "Pacifico";
+    font-size: 26px;
+    margin-top: 7px;
+  }
+  background: $navbar-default-bg;
+  border: 0;
+}
+
+.panel {
+  border: 0;
+  h3 {
+    margin: 0;
+    color: darken($body-bg, 60%);
+  }
+  .panel-heading {
+    border: 0;
+    .fa {
+      color: darken($body-bg, 60%);
+    }
+  }
+  .list-group-item {}
+}
+
+.dropdown-menu {
+  @include border-top-radius(0);
+  @include border-bottom-radius(0);
+  border:none !important;
+  box-shadow:none !important;
+  -webkit-box-shadow: 0;
+  -moz-box-shadow: 0;
+}
+
+.resume {
+  .job-experience {
+    border-bottom: 1px solid darken($body-bg, 15%);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    :first {
+      margin-top: 0;
+    };
+    :last {
+      border-bottom: 0;
+    }
+    p {
+      margin-bottom: 0;
+    }
+    .job-location {
+      margin-bottom: 10px;
+    }
+  }
+  blockquote {
+    background: lighten($body-bg, 15%);
+  }
+  ul {
+    list-style: square;
+    padding-left: 20px;
+  }
+  .list-unstyled {
+    padding-left: 0;
+  }
+  li {
+    margin-bottom: 5px;
+  }
+  h3 {
+    border-bottom: 2px solid darken($body-bg, 15%);
+    padding-bottom: 5px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 600px;
+  }
+}
+
+#home {
+  .jumbotron {
+    text-align: center;
+    h1 {
+      font-family: "Pacifico";
+    }
+    .lead {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .profile-links {
+      a {
+        color: darken($body-bg, 15%);
+        :hover {
+          color: darken($body-bg, 25%);
+        }
+      }
+    }
+  }
+  /* Customize container */
+  .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .menu-nav {
+    text-align: center;
+  }
+}
+
+.open-source {
+  .repo-name {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  .repo-details { 
+    font-size: 150%;
+    color: $panel-default-heading-bg;
+  }
+  .repo-language { font-size: 80%; }
+  .repo-description, .repo-language {
+    margin-bottom: 5px;
+  }
+}
