@@ -5271,13 +5271,21 @@ button.close {
   #home .menu-nav {
     text-align: center; }
 
+.about .portrait {
+  text-align: center;
+  padding-bottom: 20px; }
+.about .img-circle {
+  width: 300px; }
+.about .bio p {
+  font-size: 120%; }
+
 .open-source .repo-name {
   margin-top: 0;
   margin-bottom: 5px; }
 .open-source .repo-details {
   font-size: 150%;
   color: #cdc3ae; }
-.open-source .repo-language {
-  font-size: 80%; }
-.open-source .repo-description, .open-source .repo-language {
+.open-source .repo-language, .open-source .repo-last-push {
+  font-size: 90%; }
+.open-source .repo-description, .open-source .repo-language, .open-source .repo-last-push {
   margin-bottom: 5px; }

@@ -125,6 +125,21 @@ $list-group-bg: lighten($body-bg, 15%);
   }
 }
 
+.about {
+  .portrait {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  .img-circle {
+    width: 300px;
+  }
+  .bio {
+    p {
+      font-size: 120%;
+    }
+  }
+}
+
 .open-source {
   .repo-name {
     margin-top: 0;
@@ -134,8 +149,8 @@ $list-group-bg: lighten($body-bg, 15%);
     font-size: 150%;
     color: $panel-default-heading-bg;
   }
-  .repo-language { font-size: 80%; }
-  .repo-description, .repo-language {
+  .repo-language, .repo-last-push { font-size: 90%; }
+  .repo-description, .repo-language, .repo-last-push {
     margin-bottom: 5px;
   }
 }

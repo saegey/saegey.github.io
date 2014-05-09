@@ -38,6 +38,7 @@ $( document ).ready(function() {
       if (data[i].language) {
         html += "<p class='repo-language'>" + data[i].language + "</p>";
       }
+      html += "<p class='repo-last-push'>updated " + moment(data[i].pushed_at).fromNow() + "</p>";
       html += "</li>";
       $(".panel ul").append(html);
     }
