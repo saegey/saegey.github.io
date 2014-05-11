@@ -4,69 +4,124 @@ title: Activity
 permalink: /activity/
 container_class: activity
 ---
-<div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading">
-    <div class="btn-group">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        Activity <i class="fa fa-angle-down"></i>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li>
-          <a href="#" class="activity-change" data-entity="dailyPlaces">Places</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- List group -->
+  <ul class="nav nav-pills">
+    <li class="active">
+      <a href="#daily-summaries" class="activity-change" data-entity="dailySummaries">Daily Summary</a>
+    </li>
+    <li>
+      <a href="#daily-places" class="activity-change" data-entity="dailyPlaces">Daily Places</a>
+    </li>
+  </ul>
   <ul class="list-group">
   </ul>
-</div>
 <script>
+"use strict";
+/* jshint undef: false, unused: true */
+/* global _ */
+/* global $ */
+function googleMapsUrl(lat, lon) {
+    // https://www.google.com/maps/preview?z=10&q=36.26577+-92.54324
+    var url = "http://maps.google.com/maps?&z=17&q=";
+    url += lat + "+" + lon;
+    return url;
+}
+
 function convertDistance(distance) {
-  return Number((distance * 0.000621371).toPrecision(2)) + " miles";
+    return Number((distance * 0.000621371).toPrecision(2)) + " miles";
 }
 
 function capitaliseFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function convertDuration(seconds) {
-  return Number((seconds / 60).toPrecision(2)) + " minutes";
+    return Number((seconds / 60).toPrecision(2)) + " minutes";
+}
+
+function getUnique(data) {
+    var newarr = [],
+        unique = {};
+
+    _.each(data.segments, function (item) {
+        if (item.place.name && !unique[item.place.name]) {
+            newarr.push(item);
+            unique[item.place.name] = item;
+        }
+    });
+    return newarr;
 }
 
 function summaryTemplate(daySummary) {
-  var html = '<li class="list-group-item">';
-  html += '<div class="pull-right">' + moment(daySummary.date).fromNow() + "</div>";
-  _.each(daySummary.summary, function(summary) {
-    html += '<p><strong>' + capitaliseFirstLetter(summary.activity) + '</strong></p>';
-    html += '<p>' + convertDistance(summary.distance);
-    html += " / " + convertDuration(summary.duration) + '</p>';
-  });
-  html += '</li>';
-  return html;
+    var html = '<li class="list-group-item">';
+    html += '<h3>' + moment.utc(daySummary.date).format('dddd MMM DD YYYY') + "</h3>";
+    _.each(daySummary.summary, function (summary) {
+        html += '<p><strong>' + capitaliseFirstLetter(summary.activity) + '</strong></p>';
+        html += '<p>' + convertDistance(summary.distance);
+        html += " / " + convertDuration(summary.duration) + '</p>';
+    });
+    html += '</li>';
+    return html;
+}
+
+function placesTemplate(dailyPlaces) {
+    var html = "",
+        uniqueDays = [];
+    _.each(dailyPlaces.dailyPlaces, function (day) {
+        html += '<li class="list-group-item">';
+        html += '<h3>' + moment.utc(day.date).format('dddd MMM DD YYYY') + '</h3>';
+        uniqueDays = getUnique(day);
+        console.log(uniqueDays);
+        _.each(uniqueDays, function (location) {
+            if (location.place.name) {
+                var mapsUrl = googleMapsUrl(
+                    location.place.location.lat,
+                    location.place.location.lon
+                );
+                html += '<p><a href="' + mapsUrl + '">' + location.place.name + '</a></p>';
+            } else {
+                console.log("No location:" + location.place);
+            }
+        });
+        html += "</li>";
+        uniqueDays = [];
+    });
+    return html;
 }
 
 function getMovesData(entity, next) {
-  $.get( "http://moves.saegey.com/" + entity + ".json", function(data) {
-    return next(data);
-  });
+    $.get("http://moves.saegey.com/" + entity + ".json", function (data) {
+        return next(data);
+    });
 }
 
-$( document ).ready(function() {
-  $("a.activity-change").on( "click", function() {
-    var entity = $( this ).data("entity");
-    getMovesData(entity, function(data) {
-      console.log(data);
+$(document).ready(function () {
+    $("a.activity-change").on("click", function () {
+        $(".nav-pills li").removeClass("active");
+        $(this).parent().addClass('active');
+        var entity = $(this).data("entity"),
+            html = "";
+        getMovesData(entity, function (data) {
+            switch (entity) {
+            case 'dailyPlaces':
+                html = placesTemplate(data);
+                $("ul.list-group").html(html);
+                break;
+            case 'dailySummaries':
+                var sortedData = _.sortBy(data.summaries, function (day) { return day.date; }).reverse();
+                $("ul.list-group").html("");
+                _.each(sortedData, function (summary) {
+                    $("ul.list-group").append(summaryTemplate(summary));
+                });
+                break;
+            }
+        });
     });
-  });
-  
-  $.get( "http://moves.saegey.com/dailySummaries.json", function( data ) {
-    var data = _.sortBy(data.summaries, function(day) { return day.date}).reverse();
-    for(var i = 0; i < data.length; ++i) {
-      $(".panel ul.list-group").append(summaryTemplate(data[i]));
-    }
-  });
+
+    $.get("http://moves.saegey.com/dailySummaries.json", function (data) {
+        var sortedData = _.sortBy(data.summaries, function (day) { return day.date; }).reverse();
+        _.each(sortedData, function (summary) {
+             $("ul.list-group").append(summaryTemplate(summary));
+        });
+    });
 });
 </script>

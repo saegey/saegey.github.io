@@ -83,7 +83,6 @@ body {
       color: darken($body-bg, 60%);
     }
   }
-  .list-group-item {}
   .dropdown-menu {
     margin-left: -15px;
     margin-top: 10px;
@@ -111,6 +110,19 @@ body {
 }
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
   background-color: darken($body-bg, 15%) !important;
+}
+
+#activity {
+  h3 {
+    font-size: floor(($font-size-h3 * .95)) !important;
+    font-weight: 300;
+    color: $navbar-default-bg;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .nav-pills {
+    margin-bottom: 20px;
+  }
 }
 
 #resume {
