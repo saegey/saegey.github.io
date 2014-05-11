@@ -5,7 +5,7 @@ email: adam@saegey.com
 description: "Loves to Code"
 baseurl: "/saegey.github.io"
 url: "http://saegey.com"
-brand: AS
+brand: Saegey
 # Build settings
 markdown: kramdown
 permalinks: pretty

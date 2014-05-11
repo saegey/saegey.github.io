@@ -1,11 +1,12 @@
-$font-family-sans-serif: "Roboto";
-$body-bg: #eae6dd;
-$jumbotron-bg: #fffcf6;
-$jumbotron-color: #ff4335;
-$brand-primary: #ff4335;
-$navbar-default-bg: #fffcf6;
+$font-family-sans-serif: "Helvetica Neue", sans-serif;
+$font-family-decorative: "Damion";
+$font-size-base: 16px !default;
+$body-bg: #F3F3F3;
+$brand-primary: #D9CA2B;
+$navbar-default-bg: #232B42;
 $navbar-height: 65px;
 $navbar-default-link-hover-bg: lighten($body-bg, 5%);
+$navbar-default-toggle-hover-bg: darken($navbar-default-bg, 5%);
 $blockquote-border-color: darken($body-bg, 15%);
 $page-header-border-color: darken($body-bg, 15%);
 $dropdown-bg: lighten($body-bg, 5%);
@@ -14,14 +15,24 @@ $dropdown-link-hover-bg: lighten($body-bg, 15%);
 $panel-default-heading-bg: darken($body-bg, 15%);
 $panel-border-radius: 0;
 $list-group-bg: lighten($body-bg, 15%);
+$jumbotron-bg: #232B42;
+$jumbotron-color: $brand-primary;
+$link-color: $navbar-default-bg;
 
 @import "stylesheets/bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
 .navbar {
   .navbar-brand {
-    font-family: "Pacifico";
-    font-size: 26px;
+    font-family: $font-family-decorative;
+    font-size: 35px;
     margin-top: 7px;
+  }
+  a {
+    color: $brand-primary !important;
   }
   .navbar-right {
     margin-right: 0px !important;
@@ -29,25 +40,33 @@ $list-group-bg: lighten($body-bg, 15%);
   .nav {
     .open {
       >a {
-        background-color: darken($body-bg, 60%);
+        background-color: darken($navbar-default-bg, 5%);
       }
       .fa {
-        color: #fff;
+        color: $body-bg;
+      }
+    }
+    .fa {
+      color: $body-bg;
+    }
+    a {
+      &:hover {
+        background-color: darken($navbar-default-bg, 5%) !important;
       }
     }
   }
   .dropdown-menu {
-    background-color: darken($body-bg, 60%);
+    background-color: darken($navbar-default-bg, 5%);
     >li {
       >a {
-        color: #fff;
-        &:hover {
-          color: darken($body-bg, 60%);
+        color: $body-bg !important;
+        &:hover, &:focus {
+          background-color: $navbar-default-bg;
+          color: #726F14;
         }
       }
     }
   }
-  .nav:hover { background-color: darken($body-bg, 60%) }
   background: $navbar-default-bg;
   border: 0;
 }
@@ -79,43 +98,22 @@ $list-group-bg: lighten($body-bg, 15%);
   -webkit-box-shadow: 0;
   -moz-box-shadow: 0;
 }
-.btn {
-  padding: 0;
-  font-size: 24px;
-}
-.open {}
 .btn-default {
-  @include border-top-radius(0);
-  @include border-bottom-radius(0);
+  // @include border-top-radius(0);
+  // @include border-bottom-radius(0);
   border:none !important;
   box-shadow:none !important;
   -webkit-box-shadow: 0;
   -moz-box-shadow: 0;
-  background-color: darken($body-bg, 15%);
+  background-color: darken($body-bg, 10%);
   color: darken($body-bg, 60%);
+  font-weight: 500;
 }
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
   background-color: darken($body-bg, 15%) !important;
 }
 
-.resume {
-  .job-experience {
-    border-bottom: 1px solid darken($body-bg, 15%);
-    margin-top: 10px;
-    margin-bottom: 10px;
-    &:first {
-      margin-top: 0;
-    };
-    &:last {
-      border-bottom: 0;
-    }
-    p {
-      margin-bottom: 0;
-    }
-    .job-location {
-      margin-bottom: 10px;
-    }
-  }
+#resume {
   blockquote {
     background: lighten($body-bg, 15%);
     margin-bottom: 0;
@@ -131,14 +129,26 @@ $list-group-bg: lighten($body-bg, 15%);
   li {
     margin-bottom: 5px;
   }
-  h3 {
-    border-bottom: 2px solid darken($body-bg, 15%);
+  h1 {
+    margin-top: 0;
   }
+  h2 {
+    border-bottom: 2px solid $navbar-default-bg;
+    padding-bottom: 5px;
+    font-size: floor(($font-size-h3 * .95)) !important;
+  }
+  h1, h2, h3 {
+    font-weight: 300;
+    color: $navbar-default-bg;
+  }
+  h3 { font-size: floor(($font-size-h3 * .85)) !important; }
+  hr { border: 1px solid darken($body-bg, 15%); }
+  #adamsaegeycom { margin-top: 0;}
 }
 
 @media (min-width: 768px) {
   .container {
-    max-width: 600px;
+    max-width: 700px;
   }
 }
 
@@ -146,18 +156,19 @@ $list-group-bg: lighten($body-bg, 15%);
   .jumbotron {
     text-align: center;
     h1 {
-      font-family: "Pacifico";
+      font-family: $font-family-decorative;
+      font-size: floor(($font-size-h1 * 2.5)) !important;
     }
     .lead {
       margin-top: 30px;
       margin-bottom: 30px;
-      color: darken($body-bg, 60%);
+      color: darken($body-bg, 20%);
     }
     .profile-links {
       a {
-        color: darken($body-bg, 15%);
+        color: darken($body-bg, 20%);
         &:hover {
-          color: darken($body-bg, 60%);
+          color: $brand-primary;
         }
       }
     }
@@ -169,10 +180,12 @@ $list-group-bg: lighten($body-bg, 15%);
   }
   .menu-nav {
     text-align: center;
+    font-weight: 600;
+    font-size: $font-size-large;
   }
 }
 
-.about {
+#about {
   .portrait {
     text-align: center;
     padding-bottom: 20px;
@@ -187,7 +200,7 @@ $list-group-bg: lighten($body-bg, 15%);
   }
 }
 
-.open-source {
+#open-source {
   .repo-name {
     margin-top: 0;
     margin-bottom: 5px;

@@ -35,10 +35,12 @@ $( document ).ready(function() {
       html += '<a href="' + data[i].html_url + '">';
       html += "<h4 class='repo-name'>" + data[i].full_name + "</h4></a>";
       html += "<p class='repo-description'>" + data[i].description + "</p>";
+      html += "<p class='repo-last-push pull-right'>updated " + moment(data[i].pushed_at).fromNow() + "</p>";
       if (data[i].language) {
         html += "<p class='repo-language'>" + data[i].language + "</p>";
+      } else {
+        html += "<p class='repo-language'>&nbsp;</p>";
       }
-      html += "<p class='repo-last-push'>updated " + moment(data[i].pushed_at).fromNow() + "</p>";
       html += "</li>";
       $(".panel ul").append(html);
     }
