@@ -5339,3 +5339,5 @@ body {
   font-size: 90%; }
 #open-source .repo-description, #open-source .repo-language, #open-source .repo-last-push {
   margin-bottom: 5px; }
+#open-source .nav-pills {
+  margin-bottom: 20px; }
