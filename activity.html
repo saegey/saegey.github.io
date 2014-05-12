@@ -53,7 +53,7 @@ function getUnique(data) {
 
 function summaryTemplate(daySummary) {
     var html = '<li class="list-group-item">';
-    html += '<h3>' + moment.utc(daySummary.date).format('dddd MMM DD YYYY') + "</h3>";
+    html += '<h4>' + moment.utc(daySummary.date).format('dddd MMM DD YYYY') + "</h4>";
     _.each(daySummary.summary, function (summary) {
         html += '<p><strong>' + capitaliseFirstLetter(summary.activity) + '</strong></p>';
         html += '<p>' + convertDistance(summary.distance);
@@ -68,9 +68,8 @@ function placesTemplate(dailyPlaces) {
         uniqueDays = [];
     _.each(dailyPlaces.dailyPlaces, function (day) {
         html += '<li class="list-group-item">';
-        html += '<h3>' + moment.utc(day.date).format('dddd MMM DD YYYY') + '</h3>';
+        html += '<h4>' + moment.utc(day.date).format('dddd MMM DD YYYY') + '</h4>';
         uniqueDays = getUnique(day);
-        console.log(uniqueDays);
         _.each(uniqueDays, function (location) {
             if (location.place.name) {
                 var mapsUrl = googleMapsUrl(
