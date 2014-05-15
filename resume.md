@@ -12,8 +12,6 @@ container_class: resume
 
 ## Profile
 
-* Proven knowledge in Search Engine Optimization and Marketing; extensive experience with Google's search rankings.
-
 * Skilled in Object-Oriented Development and the MVC architecture.
 
 * Passionate about web development standards and best practices.
@@ -22,7 +20,7 @@ container_class: resume
 
 * Demonstrated understanding of the development cycle ranging from proof of concept, implementation, unit testing, and deployment.
 
-* Proficient in building frontend applications with cross-browser support and working around their quirks; Opera, Safari, Firefox, Internet Explorer (6/7).
+* Proficient in building front-end applications with cross-browser support.
 
 * Able to manage a small team and work around communication barriers.
 
@@ -52,19 +50,17 @@ Object Oriented Design, Unit, Module, and Systems Testing, Synchroniztion, Full-
 
 2012 – Present
 
-* Integrated data from numerous source including REST, SOAP, XML and used data to trigger event based business processes using callbacks.  Used Sidekiq multithread queue with retries to ensure integrity of jobs executing.
+* Integrated data from numerous sources  including REST, SOAP, XML and LDAP using callbacks to trigger business processes.  Used queue framework (Sidekiq) for resiliency and robustness.
 
-* Deployed CAS single sign on across the entire organization to simplify authentication for all employees
+* Migrated from gitweb to Gitlab allowing software engineers to adopt best practice development workflow.
 
-* Migrated from gitweb to Gitlab and was instrumental having over 40 software developers adopt merged request workflow
+* Developed  integration and unit tests in Rspec to lower regressions in production.
 
-* Wrote integration and unit tests in spec based testing frameworks
+* Developed  new and supported existing web applications written in Django/Ruby on Rails/Sinatra.
 
-* Developed and supported existing web application written in Django and Ruby on Rails
+* Deployed PaSS infrastructure for hosting services and applications using Docker and Dokku.
 
-* Deployed PaSS infrastructure for hosting services and applications using Docker and Dokku
-
-* Used puppet to maintain consistency across multiple servers
+* Wrote Puppet automation to maintain consistency across multiple servers.
 
 * * *
 
@@ -77,24 +73,26 @@ Object Oriented Design, Unit, Module, and Systems Testing, Synchroniztion, Full-
 
 * Developed "virtual warehouse" plug-in to existing legacy software using Oracle PL/SQL and web interfaces to facilitate the transfer of buffer stock on maritime vessels between ships and warehouses. 
 
-* Exclusively developed a software solution to handle workflow approvals and vendor quotations for stock requests via web interface for mobile phones and personal computers that is heavily integrated with company’s existing legacy software. 
+* Created  a responsive PHP web product to handle workflow approvals and vendor quotations for stock requests integrating with existing legacy ERP system. 
 
-* Solely developing a prototype, distributed software solution that includes a dynamic form generation framework using workflow and permissions built with Python and Django Web Framework.
+* Developed enterprise web software prototype with role-based access control and workflow using Python and Django.
 
 * * *
 
 
-### [ComputerAid, Inc.](http://www.compaid.com/)
+### [ComputerAid, Inc](http://www.compaid.com/)/Royal Carribean
 
 #### Software Engineer/Team Lead
 
 2007 – 2009
 
-* Progressively utilized "outside the box" thinking redirecting an existing LCM project by virtualizing physical servers using existing VMware ESX clusters to reduce hardware costs and power consumption on cruise vessels for Royal Caribbean. 
+* Creatively redirected an existing server replacement project by recommending virtualizing physical servers using existing virtualization hardware result in over $100k of savings for Royal Carribean. 
 
-* Built a dynamic PHP script to handle bulk order uploads to purchasing system for new-build ships including Oasis of the Seas. 
+* Built a dynamic PHP script to handle bulk order uploads to ERP purchasing system for ships under construction including Oasis of the Seas.
 
 * Led team of four developers handling all new development and support requests for AMOS software system.
+
+* Supported ERP system used by over 35 vessels for marine maintenace, incident response, inventory and purchsing handling all development and support requests.
 
 * * *
 
