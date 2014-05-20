@@ -88,7 +88,7 @@ function placesTemplate(dailyPlaces) {
 }
 
 function getMovesData(entity, next) {
-    $.get("http://moves.saegey.com/" + entity + ".json", function (data) {
+    $.get("http://moves.saegey.com/moves/" + entity, function (data) {
         return next(data);
     });
 }
@@ -106,7 +106,7 @@ $(document).ready(function () {
                 $("ul.list-group").html(html);
                 break;
             case 'dailySummaries':
-                var sortedData = _.sortBy(data.summaries, function (day) { return day.date; }).reverse();
+                var sortedData = _.sortBy(data.dailySummaries, function (day) { return day.date; }).reverse();
                 $("ul.list-group").html("");
                 _.each(sortedData, function (summary) {
                     $("ul.list-group").append(summaryTemplate(summary));
@@ -116,8 +116,8 @@ $(document).ready(function () {
         });
     });
 
-    $.get("http://moves.saegey.com/dailySummaries.json", function (data) {
-        var sortedData = _.sortBy(data.summaries, function (day) { return day.date; }).reverse();
+    $.get("http://moves.saegey.com/moves/dailySummaries", function (data) {
+        var sortedData = _.sortBy(data.dailySummaries, function (day) { return day.date; }).reverse();
         _.each(sortedData, function (summary) {
              $("ul.list-group").append(summaryTemplate(summary));
         });
