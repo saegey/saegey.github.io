@@ -2,7 +2,7 @@ $font-family-sans-serif: "Helvetica Neue", sans-serif;
 $font-family-decorative: "Damion";
 $font-size-base: 16px !default;
 $body-bg: #F3F3F3;
-$brand-primary: #D9CA2B;
+$brand-primary: #BBD6E7;
 $navbar-default-bg: #232B42;
 $navbar-height: 65px;
 $navbar-default-link-hover-bg: lighten($body-bg, 5%);
@@ -20,6 +20,36 @@ $jumbotron-color: $brand-primary;
 $link-color: $navbar-default-bg;
 
 @import "stylesheets/bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+
+.mosaicflow__column {
+    float:left;
+    }
+.mosaicflow__item {
+  padding: 5px;
+  background: white;
+  margin: 5px;
+}
+.mosaicflow {
+  margin-bottom: 10px;
+}
+.mosaicflow__item img {
+    display:block;
+    width:100%;
+    height:auto;
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    filter: grayscale(100%);
+    &:hover {
+          -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    filter: grayscale(0%);
+    }
+}
+#imagelightbox
+{
+    position: fixed;
+    z-index: 9999;
+}
 
 body {
   -webkit-font-smoothing: antialiased;
@@ -55,18 +85,18 @@ body {
       }
     }
   }
-  .dropdown-menu {
-    background-color: darken($navbar-default-bg, 5%);
-    >li {
-      >a {
-        color: $body-bg !important;
-        &:hover, &:focus {
-          background-color: $navbar-default-bg;
-          color: #726F14;
-        }
-      }
-    }
-  }
+  // .dropdown-menu {
+  //   background-color: darken($navbar-default-bg, 5%);
+  //   >li {
+  //     >a {
+  //       color: $body-bg !important;
+  //       &:hover, &:focus {
+  //         background-color: $navbar-default-bg;
+  //         color: #726F14;
+  //       }
+  //     }
+  //   }
+  // }
   background: $navbar-default-bg;
   border: 0;
 }
@@ -217,7 +247,7 @@ body {
     margin-top: 0;
     margin-bottom: 5px;
   }
-  .repo-details { 
+  .repo-details {
     font-size: 150%;
     color: $panel-default-heading-bg;
   }
@@ -229,3 +259,20 @@ body {
     margin-bottom: 20px;
   }
 }
+
+#bikes {
+  h1 {
+    font-family: $font-family-decorative;
+  }
+  .list-inline {
+    margin-bottom: 0;
+    li {
+      margin-right: 10px;
+      font-size: 85%;
+    }
+  }
+  table {
+    margin-top: 20px;
+  }
+}
+
