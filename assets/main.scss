@@ -237,3 +237,17 @@ body {
   }
 }
 
+#instagram {
+  .photos {
+    .thumbnail {
+      background: white;
+    }
+    margin-top: 25px;
+    .caption {
+      p {
+        font-size: 80%;
+      }
+    }
+  }
+}
+

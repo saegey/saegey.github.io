@@ -5346,3 +5346,10 @@ body {
   margin-top: 20px; }
 #bikes .photos {
   margin-top: 25px; }
+
+#instagram .photos {
+  margin-top: 25px; }
+  #instagram .photos .thumbnail {
+    background: white; }
+  #instagram .photos .caption p {
+    font-size: 80%; }

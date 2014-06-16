@@ -1,0 +1,81 @@
+---
+layout: default
+title: Instagram
+permalink: /instagram/
+container_class: instagram
+---
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <ul class="nav nav-pills">
+            <li class="active">
+              <a href="#/my-photos" class="activity-change" data-entity="http://api.saegey.com/v1/instagram/photos?limit=19">My Photos</a>
+            </li>
+            <li>
+              <a href="#/liked-photos" class="activity-change" data-entity="http://api.saegey.com/v1/instagram/liked?limit=19">Liked Photos</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="photos"></div>
+</div>
+<script>
+"use strict";
+/* jshint undef: false, unused: true */
+/* global _ */
+/* global document */
+
+function googleMapsUrl(lat, lon) {
+    // https://www.google.com/maps/preview?z=10&q=36.26577+-92.54324
+    var url = "http://maps.google.com/maps?&z=17&q=";
+    url += lat + "+" + lon;
+    return url;
+}
+
+function renderCaption(p) {
+    if (p.caption) {
+        return '<p>' + p.caption.text + '</p>'; 
+    } else {
+        return '<p></p>';
+    }
+}
+
+function renderLocation(p) {
+    if (p.location) {
+        if (p.location.name) {
+            var html = '<p class="pull-right">';
+                html += '<i class="fa fa-map-marker"></i> ';
+                html += '<a href="' + googleMapsUrl(p.location.latitude, p.location.longitude);
+                html += '">' + p.location.name + '</a></p>';
+                return html;
+        } else {
+            return '';
+        }
+    } else {
+        return '';
+    }
+}
+
+function loadPhotos(url) {
+    $.get(url, function (data) {
+        $(".photos").html("");
+        _.each(data.data, function (p) {
+            $(".photos").append('<div class="col-md-8 col-md-offset-2"><div class="thumbnail"><a href="' + p.link + '" target="_blank">' +
+            '<img src="' + p.images.standard_resolution.url + '">' +
+            '</a><div class="caption">' + renderLocation(p) + renderCaption(p) + '</div></div>');
+            console.log(p);
+        });
+    });
+}
+
+$(document).ready(function () {
+    loadPhotos("http://api.saegey.com/v1/instagram/photos?limit=19");
+
+    $("a.activity-change").on("click", function () {
+        $("#instagram .nav-pills li").removeClass("active");
+        $(this).parent().addClass('active');
+        var url = $(this).data("entity");
+        loadPhotos(url);
+    });
+});
+</script>
