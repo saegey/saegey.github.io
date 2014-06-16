@@ -6,15 +6,18 @@ container_class: bikes
 ---
 <script>
   var bikes = [
-    {"id": "1", "name": "Crosscheck", "docKey": "0AmHVoD078iZkdEgwUDR5UE9PVHU4TVAzanFqTnAtb3c&gid=0"},
-    {"id": "2", "name": "Juice 29er", "docKey": "0AmHVoD078iZkdEgwUDR5UE9PVHU4TVAzanFqTnAtb3c&gid=4"}
-  ];
-
-  var images = [
-    'http://photos-b.ak.instagram.com/hphotos-ak-prn/10326509_1450486858522977_1847487666_n.jpg',
-    'http://photos-a.ak.instagram.com/hphotos-ak-ash/10246047_704403556272464_1233639768_n.jpg',
-    'http://photos-d.ak.instagram.com/hphotos-ak-prn/927487_609050819156331_231200829_n.jpg',
-    'http://photos-c.ak.instagram.com/hphotos-ak-frc/914530_766050640087554_2096732005_n.jpg'
+    {
+      "id": "1", 
+      "name": "Crosscheck",
+      "tag": "crosscheck",
+      "docKey": "0AmHVoD078iZkdEgwUDR5UE9PVHU4TVAzanFqTnAtb3c&gid=0"
+    },
+    {
+      "id": "2", 
+      "name": "Juice 29er", 
+      "tag": "juice29er",
+      "docKey": "0AmHVoD078iZkdEgwUDR5UE9PVHU4TVAzanFqTnAtb3c&gid=4"
+    }
   ];
 
   function getURLParameter(name) {
@@ -31,13 +34,6 @@ container_class: bikes
       formattedData.push(part);
     }
     return formattedData;
-  }
-
-  function renderImageTemplate(imageUrl) {
-    var html = '<div class="mosaicflow__item">';
-    html += '<img src="' + imageUrl + '" class="lightbox">';
-    html += '</div>';
-    return html;
   }
 
   function gramsToLbs(grams) {
@@ -68,18 +64,6 @@ container_class: bikes
     }
   }
 
-  function renderImages(container, next) {
-    _.each(images, function(imageUrl) {
-      console.log(container);
-      // $(".mosaicflow").append(renderImageTemplate(imageUrl));
-      // container.mosaicflow('add', $(renderImageTemplate(imageUrl));
-        var elm = $('<div>A new added element</div>');
-        container.append(renderImageTemplate(imageUrl));
-      console.log('apend image');
-    });
-    return next()
-  }
-
   $(document).ready(function () {
     var docUrl = "https://docs.google.com/spreadsheet/pub?output=csv&key=";
     var bikeId = parseInt(getURLParameter("id"));
@@ -107,13 +91,20 @@ container_class: bikes
             html += renderPart(bikeParts[i]);
          }
          $(".bikes table").append(html);
+         $.get('http://api.saegey.com/v1/instagram/tag/' + bike.tag, function(response) {
+            response.forEach(function (p) {
+              $("#bikes .photos").append('<div class="col-xs-6 col-md-3"><a href="' + p.link + '" class="thumbnail">' +
+                '<img src="' + p.images.low_resolution.url + '">' +
+                '</a></div>');
+            });
+         });
     });
   }); 
 
 </script>
 
-<div class="bikes">
+<div id="bikes" class="bikes">
   <ul class="nav nav-pills nav-justified"></ul>
-
+  <div class="photos" class="row"></div>
   <table class="table table-striped"></table>
 </div>
