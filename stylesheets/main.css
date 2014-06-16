@@ -878,7 +878,7 @@ html {
   -webkit-tap-highlight-color: transparent; }
 
 body {
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 16px;
   line-height: 1.42857;
   color: #333333;
@@ -5194,33 +5194,6 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
-.mosaicflow__column {
-  float: left; }
-
-.mosaicflow__item {
-  padding: 5px;
-  background: white;
-  margin: 5px; }
-
-.mosaicflow {
-  margin-bottom: 10px; }
-
-.mosaicflow__item img {
-  display: block;
-  width: 100%;
-  height: auto;
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  filter: grayscale(100%); }
-  .mosaicflow__item img:hover {
-    -webkit-filter: grayscale(0%);
-    -moz-filter: grayscale(0%);
-    filter: grayscale(0%); }
-
-#imagelightbox {
-  position: fixed;
-  z-index: 9999; }
-
 body {
   -webkit-font-smoothing: antialiased; }
 
@@ -5371,3 +5344,5 @@ body {
     font-size: 85%; }
 #bikes table {
   margin-top: 20px; }
+#bikes .photos {
+  margin-top: 25px; }
