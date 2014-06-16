@@ -6,10 +6,10 @@ container_class: activity
 ---
   <ul class="nav nav-pills nav-justified">
     <li class="active">
-      <a href="#daily-summaries" class="activity-change" data-entity="dailySummaries">Daily Summary</a>
+      <a href="#daily-summaries" class="activity-change" data-entity="summary">Daily Summary</a>
     </li>
     <li>
-      <a href="#daily-places" class="activity-change" data-entity="dailyPlaces">Daily Places</a>
+      <a href="#daily-places" class="activity-change" data-entity="places">Daily Places</a>
     </li>
   </ul>
   <ul class="list-group">
@@ -63,10 +63,10 @@ function summaryTemplate(daySummary) {
     return html;
 }
 
-function placesTemplate(dailyPlaces) {
+function placesTemplate(places) {
     var html = "",
         uniqueDays = [];
-    _.each(dailyPlaces.dailyPlaces, function (day) {
+    _.each(places, function (day) {
         html += '<li class="list-group-item">';
         html += '<h4>' + moment.utc(day.date).format('dddd MMM DD YYYY') + '</h4>';
         uniqueDays = getUnique(day);
@@ -88,7 +88,7 @@ function placesTemplate(dailyPlaces) {
 }
 
 function getMovesData(entity, next) {
-    $.get("http://moves.saegey.com/moves/" + entity, function (data) {
+    $.get("http://api.saegey.com/v1/moves/" + entity + "?limit=10", function (data) {
         return next(data);
     });
 }
@@ -99,26 +99,24 @@ $(document).ready(function () {
         $(this).parent().addClass('active');
         var entity = $(this).data("entity"),
             html = "";
-        getMovesData(entity, function (data) {
+        getMovesData(entity, function (response) {
             switch (entity) {
-            case 'dailyPlaces':
-                html = placesTemplate(data);
-                $("ul.list-group").html(html);
-                break;
-            case 'dailySummaries':
-                var sortedData = _.sortBy(data.dailySummaries, function (day) { return day.date; }).reverse();
-                $("ul.list-group").html("");
-                _.each(sortedData, function (summary) {
-                    $("ul.list-group").append(summaryTemplate(summary));
-                });
-                break;
+                case 'places':
+                    html = placesTemplate(response.data);
+                    $("ul.list-group").html(html);
+                    break;
+                case 'summary':
+                    $("ul.list-group").html("");
+                    _.each(response.data, function (summary) {
+                        $("ul.list-group").append(summaryTemplate(summary));
+                    });
+                    break;
             }
         });
     });
 
-    $.get("http://moves.saegey.com/moves/dailySummaries", function (data) {
-        var sortedData = _.sortBy(data.dailySummaries, function (day) { return day.date; }).reverse();
-        _.each(sortedData, function (summary) {
+    $.get("http://api.saegey.com/v1/moves/summary?limit=10", function (response) {
+        _.each(response.data, function (summary) {
              $("ul.list-group").append(summaryTemplate(summary));
         });
     });
