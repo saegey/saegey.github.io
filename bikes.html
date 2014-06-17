@@ -92,7 +92,7 @@ container_class: bikes
          }
          $(".bikes table").append(html);
          $.get('http://api.saegey.com/v1/instagram/tag/' + bike.tag, function(response) {
-            response.forEach(function (p) {
+            response.data.forEach(function (p) {
               $("#bikes .photos").append('<div class="col-xs-6 col-md-3"><a href="' + p.link + '" class="thumbnail">' +
                 '<img src="' + p.images.low_resolution.url + '">' +
                 '</a></div>');
@@ -104,7 +104,15 @@ container_class: bikes
 </script>
 
 <div id="bikes" class="bikes">
-  <ul class="nav nav-pills nav-justified"></ul>
-  <div class="photos" class="row"></div>
-  <table class="table table-striped"></table>
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-pills nav-justified"></ul>
+    </div>
+  </div>
+  <div class="photos row"></div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped"></table>
+    </div>
+  </div>
 </div>
